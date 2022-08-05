@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mingmen.yanpro.mapper.SsTuimianJszbxxMapper">
+    <update id="myUpdate1" parameterType="String">
+        UPDATE `tuimian_jszbxx`
+        <set>
+            <if test="jsyxsdm != null">
+                `JSYXSDM` = #{jsyxsdm},
+            </if>
+            <if test="jsyxsmc != null">
+                `JSYXSMC` = #{jsyxsmc},
+            </if>
+            <if test="ngdbszydm != null">
+                `NGDBSZYDM` = #{ngdbszydm},
+            </if>
+            <if test="ngdbszymc != null">
+                `NGDBSZYMC` = #{ngdbszymc},
+            </if>
+            <if test="xsxm != null">
+                `XSXM` = #{xsxm},
+            </if>
+            <if test="dsxm != null">
+                `DSXM` = #{dsxm},
+            </if>
+            <if test="bkxfcj != null">
+                `BKXFCJ` = #{bkxfcj},
+            </if>
+            <if test="bkxfcjpm != null">
+                `BKXFCJPM` = #{bkxfcjpm},
+            </if>
+            <if test="bkzyrs != null">
+                `BKZYRS` = #{bkzyrs},
+            </if>
+            <if test="fszcj != null">
+                `FSZCJ` = #{fszcj},
+            </if>
+            <if test="cte != null">
+                `CTE` = #{cte},
+            </if>
+            <if test="lxdh != null">
+                `LXDH` = #{lxdh},
+            </if>
+            <if test="bz != null">
+                `BZ` = #{bz},
+            </if>
+            <if test="nf != null">
+                `NF` = #{nf},
+            </if>
+            <if test="shzt != null">
+                `SHZT` = #{shzt},
+            </if>
+            <if test="scr != null">
+                `SCR` = #{scr},
+            </if>
+            <if test="shenheren != null">
+                `SHR` = #{shenheren},
+            </if>
+            <if test="shsj != null">
+                `SHSJ` = now()
+            </if>
+        </set>
+        <where>
+            `Id` = #{id}
+        </where>
+    </update>
+
+    <insert id="insert">
+        INSERT INTO `yandatabase`.`tuimian_jszbxx` (`JSYXSDM`, `JSYXSMC`, `NGDBSZYDM`, `NGDBSZYMC`, `XSXM`, `DSXM`,
+                                                  `BKXFCJ`, `BKXFCJPM`, `BKZYRS`, `FSZCJ`, `CTE`, `LXDH`,
+                                                  `BZ`, `NF`, `SHZT`,
+                                                  `SCR`, `SHR`)
+        VALUES (#{jsyxsdm}, #{jsyxsmc}, #{ngdbszydm}, #{ngdbszymc}, #{xsxm}, #{dsxm}, #{bkxfcj}, #{bkxfcjpm}, #{bkzyrs},
+                #{fszcj}, #{cte}, #{lxdh}, #{bz}, #{nf}, #{shzt}, #{scr}, #{shenheren})
+    </insert>
+
+    <select id="totalSutShzt" resultType="java.lang.Integer">
+        SELECT count(*) from tuimian_jszbxx
+        <where>
+            <if test="jsyxsdm != null and jsyxsdm != '' ">
+                and jsyxsdm = #{jsyxsdm}
+            </if>
+            <if test="jsyxsmc != null and jsyxsmc != '' ">
+                and jsyxsmc = #{jsyxsmc}
+            </if>
+            <if test="shzt != null">
+                and shzt = #{shzt}
+            </if>
+            <if test="nf != 0">
+                and nf = #{nf}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>
+

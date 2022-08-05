@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.mingmen.yanpro.mapper.ZyzsxxMapper">
+
+    <update id="update">
+        update ss_fushi_zyxx
+        <set>
+            <if test="YXSDM != null">
+                YXSDM = #{YXSDM},
+            </if>
+            <if test="YXSMC != null">
+                YXSMC = #{YXSMC},
+            </if>
+            <if test="ZYDM != null">
+                ZYDM = #{ZYDM},
+            </if>
+            <if test="ZYMC != null">
+                ZYMC = #{ZYMC},
+            </if>
+            <if test="YJFX != null">
+                YJFX = #{YJFX},
+            </if>
+            <if test="XXFS != null">
+                XXFS = #{XXFS},
+            </if>
+            <if test="JHZS != null">
+                JHZS = #{JHZS},
+            </if>
+            <if test="YJSTMS != null">
+                YJSTMS = #{YJSTMS},
+            </if>
+            <if test="GKZKZS != null">
+                GKZKZS = #{GKZKZS},
+            </if>
+            <if test="FSBL != null">
+                FSBL = #{FSBL},
+            </if>
+            <if test="SFXYTJ != null">
+                SFXYTJ = #{SFXYTJ},
+            </if>
+            <if test="LXRJDH != null">
+                LXRJDH = #{LXRJDH},
+            </if>
+            <if test="DJYQ != null">
+                DJYQ = #{DJYQ},
+            </if>
+            <if test="BZ != null">
+                BZ = #{BZ},
+            </if>
+            <if test="SHZT != null">
+                SHZT = #{SHZT},
+            </if>
+            <if test="NF != null">
+                NF = #{NF},
+            </if>
+            <if test="SCR != null">
+                SCR = #{SCR},
+            </if>
+            <if test="SCSJ != null">
+                SCSJ = #{SCSJ},
+            </if>
+            <if test="XYSHR != null">
+                XYSHR = #{XYSHR},
+            </if>
+            <if test="XYSHSJ != null">
+                XYSHSJ = #{XYSHSJ},
+            </if>
+            <if test="YYSHR != null">
+                YYSHR = #{YYSHR},
+            </if>
+            <if test="YYSHSJ != null">
+                YYSHSJ = #{YYSHSJ},
+            </if>
+            <if test="GXSJ != null">
+                GXSJ = #{GXSJ}
+            </if>
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+
+    <select id="findPage" resultType="com.mingmen.yanpro.dao.Zyzsxx">
+        select * FROM ss_fushi_zyxx
+        <where>
+            <if test="NF != null">
+                and NF = #{NF}
+            </if>
+            <if test="SHZT != null ">
+                and SHZT = #{SHZT}
+            </if>
+            <if test="YXSDM != null and YXSDM != '' ">
+                and YXSDM = #{YXSDM}
+            </if>
+            <if test="YXSMC != null and YXSMC != '' ">
+                and YXSMC like concat('%',#{YXSMC},'%')
+            </if>
+            <if test="ZYMC != null and ZYMC != '' ">
+                and ZYMC like concat('%',#{ZYMC},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="totalSutShzt" resultType="java.lang.Integer">
+        SELECT count(*) from ss_fushi_zyxx
+        <where>
+            <if test="YXSDM != null and YXSDM != '' ">
+                and YXSDM = #{YXSDM}
+            </if>
+            <if test="YXSMC != null and YXSMC != '' ">
+                and YXSMC = #{YXSMC}
+            </if>
+            <if test="SHZT != null">
+                and SHZT = #{SHZT}
+            </if>
+            <if test="NF != 0">
+                and NF = #{NF}
+            </if>
+        </where>
+    </select>
+
+</mapper>

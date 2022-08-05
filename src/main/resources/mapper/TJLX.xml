@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.mingmen.yanpro.mapper.TJLXMapper">
+    <update id="update">
+        update tuimian_type
+        <set>
+            <if test="TJLXM != null">
+                TJLXM = #{TJLXM},
+            </if>
+            <if test="TJLXMC != null">
+                TJLXMC = #{TJLXMC},
+            </if>
+            <if test="BZ != null">
+                BZ = #{BZ},
+            </if>
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+
+</mapper>

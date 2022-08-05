@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mingmen.yanpro.mapper.BszyzsrsMapper">
+    <update id="update">
+        update bs_jianzhang_zyzsrs
+        <set>
+            <if test="ZYDM != null">
+                ZYDM = #{ZYDM},
+            </if>
+            <if test="ZYMC != null">
+                ZYMC = #{ZYMC},
+            </if>
+            <if test="NZSRS != null">
+                NZSRS = #{NZSRS},
+            </if>
+            <if test="NF != null">
+                NF = #{NF},
+            </if>
+            <if test="SCR != null">
+                SCR = #{SCR},
+            </if>
+            <if test="BZ != null">
+                BZ = #{BZ},
+            </if>
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+
+    <insert id="insert">
+        insert into bs_jianzhang_zyzsrs(YXSDM, YXSMC, ZYDM, ZYMC, NZSRS, NF, SCR)
+        select #{YXSDM},
+               #{YXSMC},
+               #{ZYDM},
+               #{ZYMC},
+               #{NZSRS},
+               #{NF},
+               #{SCR}
+        where not exists (select 1 from bs_jianzhang_zyzsrs where YXSDM = #{YXSDM} AND ZYDM = #{ZYDM} AND NF = #{NF})
+    </insert>
+    <!--id等于方法名-->
+
+    <update id="updateZyzsrsSHZT">
+        update bs_jianzhang_zyzsrs
+        <set>
+            SHZT = (
+            case
+              when SHZT = '0' then '1'
+              when SHZT = '1' then '2'
+              when SHZT = '2' then '4'
+            end
+            )
+            <if test="SCR != null">
+                SCR = #{SCR},
+            </if>
+            <if test="XYSHR != null">
+                XYSHR = #{XYSHR},
+            </if>
+            <if test="XYSHSJ != null">
+                XYSHSJ = #{XYSHSJ},
+            </if>
+            <if test="YYSHR != null">
+                YYSHR = #{YYSHR},
+            </if>
+            <if test="YYSHSJ != null">
+                YYSHSJ = #{YYSHSJ},
+            </if>
+        </set>
+        <where>
+            YXSMC = #{YXSMC}
+        </where>
+    </update>
+
+    <update id="updateXYShzt">
+        update bs_jianzhang_zyzsrs
+        <set>
+            <if test="XYSHR != null">
+                XYSHR = #{XYSHR},
+            </if>
+            XYSHSJ = CURRENT_TIMESTAMP
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+
+    <update id="updateYYShzt">
+        update bs_jianzhang_zyzsrs
+        <set>
+            <if test="YYSHR != null">
+                YYSHR = #{YYSHR},
+            </if>
+            YYSHSJ = CURRENT_TIMESTAMP
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+
+    <resultMap id="pageBszyzsrs" type="com.mingmen.yanpro.dao.BszyzsrsDao">
+        <result column="ID" property="ID" />
+        <result column="YXSDM" property="YXSDM" />
+        <result column="YXSMC" property="YXSMC" />
+        <result column="ZYDM" property="ZYDM" />
+        <result column="ZYMC" property="ZYMC" />
+        <result column="NZSRS" property="NZSRS" />
+        <result column="NF" property="NF" />
+        <result column="BZ" property="BZ" />
+        <result column="SCR" property="SCR" />
+        <result column="SCSJ" property="SCSJ" />
+        <result column="XYSHR" property="XYSHR" />
+        <result column="XYSHSJ" property="XYSHSJ" />
+        <result column="YYSHR" property="YYSHR" />
+        <result column="YYSHSJ" property="YYSHSJ" />
+        <result column="GXSJ" property="GXSJ" />
+    </resultMap>
+
+    <select id="findPage" resultMap="pageBszyzsrs">
+        select * from bs_jianzhang_zyzsrs
+        <where>
+            <if test="YXSDM != null and YXSDM != ''">
+                and YXSDM like concat('%', #{YXSDM} ,'%')
+            </if>
+            <if test="YXSMC != null and YXSMC != ''">
+                and YXSMC like concat('%', #{YXSMC} ,'%')
+            </if>
+            <if test="ZYDM != null and ZYDM != ''">
+                and ZYDM like concat('%', #{ZYDM} ,'%')
+            </if>
+            <if test="ZYMC != null and ZYMC != ''">
+                and ZYMC like concat('%', #{ZYMC} ,'%')
+            </if>
+            <if test="NF != null and NF != ''">
+                and NF like concat('%', #{NF} ,'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

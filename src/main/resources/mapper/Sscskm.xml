@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.mingmen.yanpro.mapper.SscskmMapper">
+
+    <update id="update">
+        update base_kskm_ss
+        <set>
+            <if test="KSKMDM != null">
+                KSKMDM = #{KSKMDM},
+            </if>
+            <if test="KSKMMC != null">
+                KSKMMC = #{KSKMMC},
+            </if>
+            <if test="MTYXSDM != null">
+                MTYXSDM = #{MTYXSDM},
+            </if>
+            <if test="CKSM != null">
+                CKSM = #{CKSM},
+            </if>
+            <if test="KSFZ != null">
+                KSFZ = #{KSFZ},
+            </if>
+            <if test="KSSC != null">
+                KSSC = #{KSSC},
+            </if>
+            <if test="SFDHB != null">
+                SFDHB = #{SFDHB},
+            </if>
+            <if test="KSSM != null">
+                KSSM = #{KSSM},
+            </if>
+            <if test="SFTK != null">
+                SFTK = #{SFTK},
+            </if>
+            <if test="KSDY != null">
+                KSDY = #{KSDY},
+            </if>
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+</mapper>

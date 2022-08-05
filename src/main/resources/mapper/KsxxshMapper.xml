@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.mingmen.yanpro.mapper.KsxxshMapper">
+
+    <update id="update">
+        update ss_kscjsh
+        <set>
+            <if test="KSBH != null">
+                KSBH = #{KSBH},
+            </if>
+            <if test="XM != null">
+                XM = #{XM},
+            </if>
+            <if test="ZJHM != null">
+                ZJHM = #{ZJHM},
+            </if>
+            <if test="DH != null">
+                DH = #{DH},
+            </if>
+            <if test="ZZLLM != null">
+                ZZLLM = #{ZZLLM},
+            </if>
+            <if test="YGYM != null">
+                YGYM = #{YGYM},
+            </if>
+            <if test="YWK1M != null">
+                YWK1M = #{YWK1M},
+            </if>
+            <if test="YWK2M != null">
+                YWK2M = #{YWK2M},
+            </if>
+            <if test="ZZLLS != null">
+                ZZLLS = #{ZZLLS},
+            </if>
+            <if test="YGYS != null">
+                YGYS = #{YGYS},
+            </if>
+            <if test="YWK1S != null">
+                YWK1S = #{YWK1S},
+            </if>
+            <if test="YWK2S != null">
+                YWK2S = #{YWK2S},
+            </if>
+            <if test="SQLY != null">
+                SQLY = #{SQLY},
+            </if>
+            <if test="SHJL != null">
+                SHJL = #{SHJL},
+            </if>
+            <if test="SHZT != null">
+                SHZT = #{SHZT},
+            </if>
+            <if test="ZZLLCJ != null">
+                ZZLLCJ = #{ZZLLCJ},
+            </if>
+            <if test="WGYCJ != null">
+                WGYCJ = #{WGYCJ},
+            </if>
+            <if test="YWK1CJ != null">
+                YWK1CJ = #{YWK1CJ},
+            </if>
+            <if test="YWK2CJ != null">
+                YWK2CJ = #{YWK2CJ},
+            </if>
+            <if test="SJSFNGSH != null">
+                SJSFNGSH = #{SJSFNGSH},
+            </if>
+            <if test="NF != null">
+                NF = #{NF},
+            </if>
+            <if test="SCR != null">
+                SCR = #{SCR},
+            </if>
+            <if test="SCSJ != null">
+                SCSJ = #{SCSJ},
+            </if> <if test="SHR != null">
+                SHR = #{SHR},
+            </if>
+            <if test="SHSJ != null">
+                SHSJ = #{SHSJ},
+            </if>
+            <if test="GXSJ != null">
+                GXSJ = #{GXSJ}
+            </if>
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+
+    <select id="findPage" resultType="com.mingmen.yanpro.dao.Ksxxsh">
+        SELECT ss_kscjsh.ID,KSBH, XM, ZJHM, DH, ZZLLM,t1.KSKMMC as ZZLLMC, YGYM,t2.KSKMMC as YGYMC,YWK1M,t3.KSKMMC as YWK1MC, YWK2M,t4.KSKMMC as YWK2MC, ZZLLS, YGYS, YWK1S, YWK2S, SQLY, SHJL, SHZT, ZZLLCJ, WGYCJ, YWK1CJ, YWK2CJ, SJSFNGSH, NF, SCR, SCSJ, SHR, SHSJ, GXSJ,ss_kscjsh.ZZLLM, ss_kscjsh.YGYM, ss_kscjsh.YWK1M, ss_kscjsh.YWK2M
+        FROM ss_kscjsh
+        LEFT JOIN base_kskm_ss t1 on ss_kscjsh.ZZLLM=t1.KSKMDM
+        LEFT JOIN base_kskm_ss t2 on ss_kscjsh.YGYM=t2.KSKMDM
+        LEFT JOIN base_kskm_ss t3 on ss_kscjsh.YWK1M=t3.KSKMDM
+        LEFT JOIN base_kskm_ss t4 on ss_kscjsh.YWK2M=t4.KSKMDM
+        <where>
+            <if test="NF != null and KSBH != ''">
+                and NF = #{NF}
+            </if>
+            <if test="SHZT != null">
+                and SHZT = #{SHZT}
+            </if>
+            <if test="KSBH != null and KSBH != '' ">
+                and KSBH = #{KSBH}
+            </if>
+            <if test="XM != null and XM != '' ">
+                and XM = #{XM}
+            </if>
+            <if test="ZJHM != null and ZJHM != '' ">
+                and ZJHM = #{ZJHM}
+            </if>
+        </where>
+    </select>
+</mapper>

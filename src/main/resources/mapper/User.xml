@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mingmen.yanpro.mapper.UserMapper">
+    <update id="update">
+        update base_user
+        <set>
+            <if test="ZGH != null">
+                ZGH = #{ZGH},
+            </if>
+            <if test="XM != null">
+                XM = #{XM},
+            </if>
+            <if test="YXSDM != null">
+                YXSDM = #{YXSDM},
+            </if>
+            <if test="MM != null">
+                MM = #{MM},
+            </if>
+<!--            <if test="YHZ != null">-->
+<!--                YHZ = #{YHZ},-->
+<!--            </if>-->
+            <if test="CJR != null">
+                CJR = #{CJR},
+            </if>
+            <if test="GXR != null">
+                GXR = #{GXR}
+            </if>
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+    <!--id等于方法名-->
+
+<!--    根据职工号进行用户角色设置-->
+    <update id="updateYHZ">
+        update base_user
+        <set>
+            <if test="YHZ != null">
+                YHZ = #{YHZ},
+            </if>
+            <if test="GXR != null">
+                GXR = #{GXR}
+            </if>
+        </set>
+        <where>
+            ZGH = #{ZGH}
+        </where>
+    </update>
+
+</mapper>

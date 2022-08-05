@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mingmen.yanpro.mapper.SsjianzhangZykskmMapper">
+    <update id="myUpdate">
+        UPDATE `ss_jianzhang_zykskm`
+        <set>
+            <if test="yxsdm != null">
+                YXSDM = #{yxsdm,jdbcType=VARCHAR},
+            </if>
+            <if test="yxsmc != null">
+                YXSMC = #{yxsmc,jdbcType=VARCHAR},
+            </if>
+            <if test="zydm != null">
+                ZYDM = #{zydm,jdbcType=VARCHAR},
+            </if>
+            <if test="zymc != null">
+                ZYMC = #{zymc,jdbcType=VARCHAR},
+            </if>
+            <if test="yjfxdm != null">
+                YJFXDM = #{yjfxdm,jdbcType=VARCHAR},
+            </if>
+            <if test="yjfxmc != null">
+                YJFXMC = #{yjfxmc,jdbcType=VARCHAR},
+            </if>
+            <if test="zzllm != null">
+                ZZLLM = #{zzllm,jdbcType=VARCHAR},
+            </if>
+            <if test="wgym != null">
+                WGYM = #{wgym,jdbcType=VARCHAR},
+            </if>
+            <if test="ywk1m != null">
+                YWK1M = #{ywk1m,jdbcType=VARCHAR},
+            </if>
+            <if test="ywk2m != null">
+                YWK2M = #{ywk2m,jdbcType=VARCHAR},
+            </if>
+            <if test="fsbskm != null">
+                FSBSKM = #{fsbskm,jdbcType=VARCHAR},
+            </if>
+            <if test="nf != null">
+                NF = #{nf,jdbcType=VARCHAR},
+            </if>
+            <if test="bz != null">
+                BZ = #{bz,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <where>
+            `ID` = #{id}
+        </where>
+    </update>
+
+    <insert id="insert">
+        insert into ss_jianzhang_zykskm (YXSDM, YXSMC, ZYDM,
+                                         ZYMC, YJFXDM, YJFXMC,
+                                         ZZLLM, WGYM, YWK1M,
+                                         YWK2M, FSBSKM, NF,
+                                         SCR, BZ)
+        select #{yxsdm,jdbcType=VARCHAR},
+               #{yxsmc,jdbcType=VARCHAR},
+               #{zydm,jdbcType=VARCHAR},
+               #{zymc,jdbcType=VARCHAR},
+               #{yjfxdm,jdbcType=VARCHAR},
+               #{yjfxmc,jdbcType=VARCHAR},
+               #{zzllm,jdbcType=VARCHAR},
+               #{wgym,jdbcType=VARCHAR},
+               #{ywk1m,jdbcType=VARCHAR},
+               #{ywk2m,jdbcType=VARCHAR},
+               #{fsbskm,jdbcType=VARCHAR},
+               #{nf,jdbcType=VARCHAR},
+               #{scr,jdbcType=VARCHAR},
+               #{bz,jdbcType=VARCHAR}
+               where not exists (select 1 from ss_jianzhang_zykskm where YXSMC=#{yxsmc} and ZYMC=#{zymc} and YJFXMC=#{yjfxmc} and NF=#{nf})
+    </insert>
+
+</mapper>

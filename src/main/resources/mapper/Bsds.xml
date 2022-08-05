@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.mingmen.yanpro.mapper.BsdsMapper">
+
+    <update id="update">
+        update base_daoshi_bs
+        <set>
+            <if test="ZGH != null">
+                ZGH = #{ZGH},
+            </if>
+
+            <if test="DSXM != null">
+                DSXM = #{DSXM},
+            </if>
+            <if test="SZYXDM != null">
+                SZYXDM = #{SZYXDM},
+            </if>
+            <if test="SZYXMC != null">
+                SZYXMC = #{SZYXMC},
+            </if>
+            <if test="ZC != null">
+                ZC = #{ZC},
+            </if>
+            <if test="XBZSYXDM != null">
+                XBZSYXDM = #{XBZSYXDM},
+            </if>
+            <if test="XBZSYXMC != null">
+                XBZSYXMC = #{XBZSYXMC},
+            </if>
+            <if test="XBZSZYDM != null">
+                XBZSZYDM = #{XBZSZYDM},
+            </if>
+            <if test="XBZSZYMC != null">
+                XBZSZYMC = #{XBZSZYMC},
+            </if>
+            <if test="ZBZSYXDM != null">
+                ZBZSYXDM = #{ZBZSYXDM},
+            </if>
+            <if test="ZBZSYXMC != null">
+                ZBZSYXMC = #{ZBZSYXMC},
+            </if>
+            <if test="ZBZSZYDM != null">
+                ZBZSZYDM = #{ZBZSZYDM},
+            </if>
+            <if test="ZBZSZYMC != null">
+                ZBZSZYMC = #{ZBZSZYMC},
+            </if>
+            <if test="BZ != null">
+                BZ = #{BZ},
+            </if>
+            <if test="NF != null">
+                NF = #{NF},
+            </if>
+
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+</mapper>

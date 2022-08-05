@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingmen.yanpro.mapper.BsLQSBLDXXMapper">
+
+    <select id="totalSutShzt" resultType="java.lang.Integer">
+        SELECT count(*) from bs_luqu_sbldxx
+        <where>
+            <if test="lqyxdm != null and lqyxdm != '' ">
+                and yxsdm = #{lqyxdm}
+            </if>
+            <if test="lqyxmc != null and lqyxmc != '' ">
+                and yxsmc = #{lqyxmc}
+            </if>
+            <if test="shzt != null">
+                and shzt = #{shzt}
+            </if>
+            <if test="nf != 0">
+                and nf = #{nf}
+            </if>
+        </where>
+    </select>
+    <select id="alllqzymc" resultType="java.lang.String">
+        SELECT zymc from base_zhuanye_bs
+        <where>
+            nf = #{nf}
+            <if test="yxsdm != null and yxsdm != '' ">
+                and yxsdm = #{yxsdm}
+            </if>
+
+        </where>
+    </select>
+</mapper>

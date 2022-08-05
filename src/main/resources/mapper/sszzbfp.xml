@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.mingmen.yanpro.mapper.SszzbfpMapper">
+
+    <update id="update">
+        update ss_jianzhang_zzbfp
+        <set>
+            <if test="YXSDM != null">
+                YXSDM = #{YXSDM},
+            </if>
+
+            <if test="YXSMC != null">
+                YXSMC = #{YXSMC},
+            </if>
+            <if test="ZSSL != null">
+                ZSSL = #{ZSSL},
+            </if>
+            <if test="ZSZL != null">
+                ZSZL = #{ZSZL},
+            </if>
+            <if test="TMSL != null">
+                TMSL = #{TMSL},
+            </if>
+            <if test="TMZL != null">
+                TMZL = #{TMZL},
+            </if>
+            <if test="NF != null">
+                NF = #{NF},
+            </if>
+            <if test="SCR != null">
+                SCR = #{SCR},
+            </if>
+
+
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+</mapper>

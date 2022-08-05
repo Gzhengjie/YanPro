@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mingmen.yanpro.mapper.SsXuanchuanXlyxxMapper">
+
+    <update id="update" >
+        UPDATE `ss_xuanchuan_xlyxx`
+        <set>
+            <if test="XH != null">
+                XH = #{XH},
+            </if>
+            <if test="XM != null">
+                XM = #{XM},
+            </if>
+            <if test="MZ != null">
+                MZ = #{MZ},
+            </if>
+            <if test="ZZMM != null">
+                ZZMM = #{ZZMM},
+            </if>
+            <if test="YCZP != null">
+                YCZP = #{YCZP},
+            </if>
+            <if test="ZJHM != null">
+                ZJHM = #{ZJHM},
+            </if>
+            <if test="XB != null">
+                XB = #{XB},
+            </if>
+            <if test="SQLB != null">
+                SQLB = #{SQLB},
+            </if>
+            <if test="BIRTHDAY != null">
+                BIRTHDAY = #{BIRTHDAY},
+            </if>
+            <if test="DZYB != null">
+                DZYB = #{DZYB},
+            </if>
+            <if test="RXSJ != null">
+                RXSJ = #{RXSJ},
+            </if>
+            <if test="BYSJ != null">
+                BYSJ = #{BYSJ},
+            </if>
+            <if test="DH != null">
+                DH = #{DH},
+            </if>
+            <if test="EMAIL != null">
+                EMAIL = #{EMAIL},
+            </if>
+            <if test="YXSDM != null">
+                YXSDM = #{YXSDM},
+            </if>
+            <if test="YXSMC != null">
+                YXSMC = #{YXSMC},
+            </if>
+            <if test="ZYDM != null">
+                ZYDM = #{ZYDM},
+            </if>
+            <if test="ZYMC != null">
+                ZYMC = #{ZYMC},
+            </if>
+            <if test="ZYRS != null">
+                ZYRS = #{ZYRS},
+            </if>
+            <if test="XFCJ != null">
+                XFCJ = #{XFCJ},
+            </if>
+            <if test="QSNZYPM != null">
+                QSNZYPM = #{QSNZYPM},
+            </if>
+            <if test="GPA != null">
+                GPA = #{GPA},
+            </if>
+            <if test="WYDJ != null">
+                WYDJ = #{WYDJ},
+            </if>
+            <if test="SCCL != null">
+                SCCL = #{SCCL},
+            </if>
+            <if test="BYXX != null">
+                BYXX = #{BYXX},
+            </if>
+            <if test="BYYXS != null">
+                BYYXS = #{BYYXS},
+            </if>
+            <if test="BYZY != null">
+                BYZY = #{BYZY},
+            </if>
+            <if test="HJQK != null">
+                HJQK = #{HJQK},
+            </if>
+            <if test="KYCG != null">
+                KYCG = #{KYCG},
+            </if>
+            <if test="GRJJ != null">
+                GRJJ = #{GRJJ},
+            </if>
+            <if test="SHZT != null">
+                SHZT = #{SHZT},
+            </if>
+            <if test="NF != null">
+                NF = #{NF},
+            </if>
+            <if test="BZ != null">
+                BZ = #{BZ},
+            </if>
+            <if test="TBSJ != null">
+                TBSJ = #{TBSJ},
+            </if>
+            <if test="GXSJ != null">
+                GXSJ = #{GXSJ},
+            </if>
+            <if test="XYSHR != null">
+                XYSHR = #{XYSHR},
+            </if>
+            <if test="XYSHSJ != null">
+                XYSHSJ = #{XYSHSJ}
+            </if>
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+
+    <insert id="insert">
+        INSERT INTO `yandatabase`.`ss_xuanchuan_xlyxx`(`ID`, `XH`, `XM`, `MZ`, `ZZMM`, `YCZP`, `ZJHM`, `XB`, `SQLB`, `SQLB`, `DZYB`, `RXSJ`, `BYSJ`,`DH`, `EMAIL`, `YXSDM`, `YXSMC`, `ZYDM`, `ZYMC`, `ZYRS`, `XFCJ`, `QSNZYPM`, `GPA`, `WYDJ`, `SCCL`, `BYXX`, `BYYXS`, `BYZY`, `HJQK`, `KYCG`, `GRJJ`, `SHZT`, `NF`, `BZ`, `TBSJ`, `GXSJ`, `XYSHR`, `XYSHSJ`)
+        VALUES (#{ID},#{XH},#{XM},#{MZ},#{ZZMM},#{YCZP},#{ZJHM},#{XB},#{SQLB},#{SQLB},#{DZYB},#{RXSJ},#{BYSJ},#{DH},#{EMAIL},#{YXSDM},#{YXSMC},#{ZYDM},#{ZYMC},#{ZYRS},#{XFCJ},#{QSNZYPM},#{GPA},#{WYDJ},#{SCCL},#{BYXX},#{BYYXS},#{BYZY},#{HJQK},#{KYCG},#{GRJJ},#{SHZT},#{NF},#{BZ},#{TBSJ},#{GXSJ},#{XYSHR},#{XYSHSJ});
+    </insert>
+
+    <select id="findPage" resultType="com.mingmen.yanpro.dao.SsXuanchuanXlyxx">
+        select * FROM ss_xuanchuan_xlyxx
+        <where>
+            <if test="EMAIL != null and EMAIL != ''" >
+                and EMAIL = #{EMAIL}
+            </if>
+            <if test="NF != null">
+                and NF = #{NF}
+            </if>
+            <if test="YXSDM != null and YXSDM != '' ">
+                and YXSDM = #{YXSDM}
+            </if>
+            <if test="SHZT != null">
+                and SHZT = #{SHZT}
+            </if>
+            <if test="XM != null and XM != '' ">
+                and XM LIKE concat('%',#{XM},'%')
+            </if>
+            <if test="ZJHM != null and ZJHM != '' ">
+                and ZJHM = #{ZJHM}
+            </if>
+        </where>
+    </select>
+
+    <select id="totalSutShzt" resultType="java.lang.Integer">
+        SELECT count(*) from ss_xuanchuan_xlyxx
+        <where>
+            <if test="YXSDM != null and YXSDM != '' ">
+                and YXSDM = #{YXSDM}
+            </if>
+            <if test="YXSMC != null and YXSMC != '' ">
+                and YXSMC = #{YXSMC}
+            </if>
+            <if test="SHZT != null and SHZT != '' ">
+                and SHZT = #{SHZT}
+            </if>
+            <if test="NF != 0">
+                and NF = #{NF}
+            </if>
+        </where>
+    </select>
+
+
+
+</mapper>
+

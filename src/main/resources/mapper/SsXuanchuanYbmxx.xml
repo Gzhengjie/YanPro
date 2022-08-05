@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mingmen.yanpro.mapper.SsXuanchuanYbmxxMapper">
+    <update id="update">
+        UPDATE `ss_xuanchuan_ybmxx`
+        <set>
+            <if test="XM != null">
+                `XM` = #{XM},
+            </if>
+            <if test="XB != null">
+                `XB` = #{XB},
+            </if>
+            <if test="CSNY != null">
+                `CSNY` = #{CSNY},
+            </if>
+            <if test="MZ != null">
+                `MZ` = #{MZ},
+            </if>
+            <if test="ZZMM != null">
+                `ZZMM` = #{ZZMM},
+            </if>
+            <if test="YCZP != null">
+                `YCZP` = #{YCZP},
+            </if>
+            <if test="ZJHM != null">
+                `ZJHM` = #{ZJHM},
+            </if>
+            <if test="LXDH != null">
+                `LXDH` = #{LXDH},
+            </if>
+            <if test="BYYX != null">
+                `BYYX` = #{BYYX},
+            </if>
+            <if test="BYYXS != null">
+                `BYYXS` = #{BYYXS},
+            </if>
+            <if test="BYZY != null">
+                `BYZY` = #{BYZY},
+            </if>
+            <if test="NSBZYDM != null">
+                `NSBZYDM` = #{NSBZYDM},
+            </if>
+            <if test="NSBZYMC != null">
+                `NSBZYMC` = #{NSBZYMC},
+            </if>
+            <if test="ZYDM != null">
+                `ZYDM` = #{ZYDM},
+            </if>
+            <if test="ZYMC != null">
+                `ZYMC` = #{ZYMC},
+            </if>
+            <if test="SGHZJS != null">
+                `SGHZJS` = #{SGHZJS},
+            </if>
+            <if test="QSNXJF != null">
+                `QSNXJF` = #{QSNXJF},
+            </if>
+            <if test="WYYZ != null">
+                `WYYZ` = #{WYYZ},
+            </if>
+            <if test="WYDJ != null">
+                `WYDJ` = #{WYDJ},
+            </if>
+            <if test="GRJS != null">
+                `GRJS` = #{GRJS},
+            </if>
+            <if test="SCCL != null">
+                `SCCL` = #{SCCL},
+            </if>
+            <if test="BZ != null">
+                `BZ` = #{BZ},
+            </if>
+            <if test="MM != null">
+                `MM` = #{MM}
+            </if>
+        </set>
+        <where>
+            `Id` = #{Id}
+        </where>
+    </update>
+</mapper>

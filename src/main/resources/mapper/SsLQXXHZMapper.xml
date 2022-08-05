@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace= "com.mingmen.yanpro.mapper.SsLQXXHZMapper">
+<!--    <update id="update">-->
+<!--    update sys_user-->
+<!--    <set>-->
+<!--        <if test="lqyxdm != null">-->
+<!--            lqyxdm = #{lqyxdm},-->
+<!--        </if>-->
+
+<!--        <if test="lqyxmc != null">-->
+<!--            lqyxmc = #{lqyxmc},-->
+<!--        </if>-->
+<!--        <if test="lqzydm != null">-->
+<!--            lqzydm = #{lqzydm},-->
+<!--        </if>-->
+<!--        <if test="lqzymc != null">-->
+<!--            lqzymc = #{lqzymc},-->
+<!--        </if>-->
+<!--        <if test="xxfs != null">-->
+<!--            xxfs = #{xxfs}-->
+<!--        </if>-->
+<!--        <if test="ksxm != null">-->
+<!--            ksxm = #{ksxm}-->
+<!--        </if>-->
+<!--        <if test="ksbh != null">-->
+<!--            ksbh = #{ksbh}-->
+<!--        </if>-->
+<!--        <if test="dsxm != null">-->
+<!--            dsxm = #{dsxm}-->
+<!--        </if>-->
+<!--        <if test="tjbj != null">-->
+<!--            tjbj = #{tjbj}-->
+<!--        </if>-->
+<!--        <if test="cszcj != null">-->
+<!--            cszcj = #{cszcj}-->
+<!--        </if>-->
+<!--        <if test="bscj != null">-->
+<!--            bscj = #{bscj}-->
+<!--        </if>-->
+<!--        <if test="mscj != null">-->
+<!--            mscj = #{mscj}-->
+<!--        </if>-->
+<!--        <if test="fscj != null">-->
+<!--            fscj = #{fscj}-->
+<!--        </if>-->
+<!--        <if test="zcj != null">-->
+<!--            zcj = #{zcj}-->
+<!--        </if>-->
+<!--        <if test="cjpm != null">-->
+<!--            cjpm = #{cjpm}-->
+<!--        </if>-->
+<!--        <if test="tgxmdm != null">-->
+<!--            tgxmdm = #{tgxmdm}-->
+<!--        </if>-->
+<!--        <if test="nlqlbm != null">-->
+<!--            nlqlbm = #{nlqlbm}-->
+<!--        </if>-->
+<!--        <if test="zxjh != null">-->
+<!--            zxjh = #{zxjh}-->
+<!--        </if>-->
+<!--        <if test="xmm != null">-->
+<!--            xmm = #{xmm}-->
+<!--        </if>-->
+<!--        <if test="dxjydwdm != null">-->
+<!--            dxjydwdm = #{dxjydwdm}-->
+<!--        </if>-->
+<!--        <if test="szdw != null">-->
+<!--            szdw = #{szdw}-->
+<!--        </if>-->
+<!--        <if test="sfdd != null">-->
+<!--            sfdd = #{sfdd}-->
+<!--        </if>-->
+<!--        <if test="bz != null">-->
+<!--            bz = #{bz}-->
+<!--        </if>-->
+<!--    </set>-->
+<!--    <where>-->
+<!--        id = #{id}-->
+<!--    </where>-->
+
+<!--    </update>-->
+
+    <select id="findPage" resultType="com.mingmen.yanpro.dao.SsLQXXHZ">
+        select ss_luqu_xxhuizong.*, base_wydj.TGXMMC as tgxmmc, base_nlqlb.lbmc as nlqlb, base_gjzxjh.zxjhmc as zxjhmc, base_zyxwzx.xmmc as xmmc
+        from ss_luqu_xxhuizong
+        left join base_wydj on binary ss_luqu_xxhuizong.tgxmdm = binary base_wydj.TGXMDM
+        left join base_nlqlb on binary base_nlqlb.lbdm = binary ss_luqu_xxhuizong.nlqlbm
+        left join base_gjzxjh on binary base_gjzxjh.zxjhdm = binary ss_luqu_xxhuizong.zxjh
+        left join base_zyxwzx on binary base_zyxwzx.xmdm = binary ss_luqu_xxhuizong.xmm
+        <where>
+            <if test="shzt != null">
+                and shzt = #{shzt}
+            </if>
+            <if test="lqyxdm != null and lqyxdm != '' ">
+                and lqyxdm like concat('%',  #{lqyxdm}, '%')
+            </if>
+            <if test="lqyxmc != null and lqyxmc != '' ">
+                and lqyxmc like concat('%', #{lqyxmc}, '%')
+            </if>
+            <if test="lqzymc != null and lqzymc != ''">
+                and lqzymc like concat('%', #{lqzymc}, '%')
+            </if>
+            <if test="xxfs != null and xxfs != ''">
+                and xxfs like concat('%', #{xxfs}, '%')
+            </if>
+            <if test="zxjh != null and zxjh != ''">
+                and zxjhmc like concat('%', #{zxjh}, '%')
+            </if>
+            <if test="ksbh != null and ksbh != ''">
+                and ksbh like concat('%', #{ksbh}, '%')
+            </if>
+            <if test="ksxm != null and ksxm != ''">
+                and ksxm like concat('%', #{ksxm}, '%')
+            </if>
+            <if test="nf != 0">
+                and nf = #{nf}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectAll" resultType="com.mingmen.yanpro.dao.SsLQXXHZ">
+        SELECT lqyxdm, lqyxmc, lqzydm, lqzymc, xxfs, ksxm,ksbh,dsxm,tjbj,cszcj,bscj,mscj, fscj,zcj,cjpm,dxjydwdm,szdw,sfdd,ss_luqu_xxhuizong.bz,base_wydj.TGXMMC as tgxmmc, base_nlqlb.lbmc as nlqlb, base_gjzxjh.zxjhmc as zxjhmc, base_zyxwzx.xmmc as xmmc,nf
+        from ss_luqu_xxhuizong
+        left join base_wydj on binary ss_luqu_xxhuizong.tgxmdm = binary base_wydj.TGXMDM
+        left join base_nlqlb on binary base_nlqlb.lbdm = binary ss_luqu_xxhuizong.nlqlbm
+        left join base_gjzxjh on binary base_gjzxjh.zxjhdm = binary ss_luqu_xxhuizong.zxjh
+        left join base_zyxwzx on binary base_zyxwzx.xmdm = binary ss_luqu_xxhuizong.xmm
+        <where>
+            <if test="lqyxdm != null and lqyxdm != '' ">
+                and lqyxdm = #{lqyxdm}
+            </if>
+            <if test="lqyxmc != null and lqyxmc != '' ">
+                and lqyxmc = #{lqyxmc}
+            </if>
+            <if test="lqzymc != null and lqzymc != '' ">
+                and lqzymc = #{lqzymc}
+            </if>
+            <if test="shzt != null">
+                and shzt = #{shzt}
+            </if>
+            <if test="nf != 0">
+                and nf = #{nf}
+            </if>
+        </where>
+
+    </select>
+    <select id="totalStudent" resultType="java.lang.Integer">
+        SELECT count(*) from ss_luqu_xxhuizong
+        <where>
+            <if test="lqyxdm != null and lqyxdm != '' ">
+                and lqyxdm = #{lqyxdm}
+            </if>
+        </where>
+    </select>
+    <select id="totalSutShzt" resultType="java.lang.Integer">
+        SELECT count(*) from ss_luqu_xxhuizong
+        <where>
+            <if test="lqyxdm != null and lqyxdm != '' ">
+                and lqyxdm = #{lqyxdm}
+            </if>
+            <if test="lqyxmc != null and lqyxmc != '' ">
+                and lqyxmc = #{lqyxmc}
+            </if>
+            <if test="shzt != null">
+                and shzt = #{shzt}
+            </if>
+            <if test="nf != 0">
+                and nf = #{nf}
+            </if>
+        </where>
+    </select>
+
+</mapper>

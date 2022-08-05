@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mingmen.yanpro.mapper.BszsjzMapper">
+    <update id="update">
+        update bs_jianzhang_zsjz
+        <set>
+            <if test="YXSDM != null">
+                YXSDM = #{YXSDM},
+            </if>
+            <if test="YXSMC != null">
+                YXSMC = #{YXSMC},
+            </if>
+            <if test="YJFXDM != null">
+                YJFXDM = #{YJFXDM},
+            </if>
+            <if test="YJFXMC != null">
+                YJFXMC = #{YJFXMC},
+            </if>
+            <if test="ZDJS != null">
+                ZDJS = #{ZDJS},
+            </if>
+            <if test="KSKM != null">
+                KSKM = #{KSKM},
+            </if>
+            <if test="LXDH != null">
+                LXDH = #{LXDH},
+            </if>
+            <if test="BZ != null">
+                BZ = #{BZ},
+            </if>
+            <if test="NF != null">
+                NF = #{NF},
+            </if>
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+
+    <insert id="insert">
+        insert into bs_jianzhang_zsjz(YXSDM, YXSMC, ZYDM, ZYMC, YJFXDM, YJFXMC, ZDJS, KSKM, LXDH, BZ, NF, SCR)
+        select #{YXSDM}, #{YXSMC},#{ZYDM}, #{ZYMC}, #{YJFXDM}, #{YJFXMC}, #{ZDJS}, #{KSKM}, #{LXDH}, #{BZ}, #{NF}, #{SCR}
+        where not exists (select 1 from bs_jianzhang_zsjz where YXSDM = #{YXSDM} and ZYDM = #{ZYDM} and YJFXDM = #{YJFXDM} and NF = #{NF})
+    </insert>
+    <!--id等于方法名-->
+
+    <select id="pjJZBZ" resultType="com.mingmen.yanpro.dao.BsjianzhangDao">
+        SELECT
+            bs_jianzhang_zsjz.NF AS NF,
+            CONCAT(bs_jianzhang_zyzsrs.ZYDM,bs_jianzhang_zyzsrs.ZYMC,"(",bs_jianzhang_zyzsrs.NZSRS,"人)") AS ZYMC,
+            CONCAT(bs_jianzhang_zsjz.YJFXDM,bs_jianzhang_zsjz.YJFXMC) AS YJFXMC,
+            bs_jianzhang_zsjz.ZDJS AS ZDJS,
+            bs_jianzhang_zsjz.KSKM AS KSKM,
+            bs_jianzhang_zsjz.LXDH AS LXDH,
+            base_yjfx_bs.XXFS AS XXFS ,
+            base_yjfx_bs.ZSLX AS ZSLX
+        FROM
+            bs_jianzhang_zyzsrs,
+            bs_jianzhang_zsjz,
+            base_yjfx_bs
+        WHERE
+            bs_jianzhang_zyzsrs.YXSDM = bs_jianzhang_zsjz.YXSDM AND
+            bs_jianzhang_zyzsrs.ZYDM = bs_jianzhang_zsjz.ZYDM AND
+            bs_jianzhang_zyzsrs.NF = bs_jianzhang_zsjz.NF AND
+            bs_jianzhang_zsjz.YJFXDM = base_yjfx_bs.YJFXDM AND
+            bs_jianzhang_zsjz.ZYDM = base_yjfx_bs.ZYDM AND
+            bs_jianzhang_zsjz.NF = #{NF} AND
+            bs_jianzhang_zsjz.YXSDM = #{YXSDM}
+        order by ZYMC,YJFXMC
+    </select>
+
+    <resultMap id="pageBszsjz" type="com.mingmen.yanpro.dao.BszsjzDao">
+        <result column="ID" property="ID" />
+        <result column="YXSDM" property="YXSDM" />
+        <result column="YXSMC" property="YXSMC" />
+        <result column="ZYDM" property="ZYDM" />
+        <result column="ZYMC" property="ZYMC" />
+        <result column="YJFXDM" property="YJFXDM" />
+        <result column="YJFXMC" property="YJFXMC" />
+        <result column="ZDJS" property="ZDJS" />
+        <result column="KSKM" property="KSKM" />
+        <result column="LXDH" property="LXDH" />
+        <result column="NF" property="NF" />
+        <result column="BZ" property="BZ" />
+        <result column="SCR" property="SCR" />
+        <result column="SCSJ" property="SCSJ" />
+        <result column="XYSHR" property="XYSHR" />
+        <result column="XYSHSJ" property="XYSHSJ" />
+        <result column="YYSHR" property="YYSHR" />
+        <result column="YYSHSJ" property="YYSHSJ" />
+        <result column="GXSJ" property="GXSJ" />
+    </resultMap>
+
+    <select id="findPage" resultMap="pageBszsjz">
+        select * from bs_jianzhang_zsjz
+        <where>
+            <if test="YXSDM != null and YXSDM != ''">
+                and YXSDM like concat('%', #{YXSDM} ,'%')
+            </if>
+            <if test="YXSMC != null and YXSMC != ''">
+                and YXSMC like concat('%', #{YXSMC} ,'%')
+            </if>
+            <if test="ZYDM != null and ZYDM != ''">
+                and ZYDM like concat('%', #{ZYDM} ,'%')
+            </if>
+            <if test="ZYMC != null and ZYMC != ''">
+                and ZYMC like concat('%', #{ZYMC} ,'%')
+            </if>
+            <if test="YJFXDM != null and YJFXDM != ''">
+                and YJFXDM like concat('%', #{YJFXDM} ,'%')
+            </if>
+            <if test="YJFXMC != null and YJFXMC != ''">
+                and YJFXMC like concat('%', #{YJFXMC} ,'%')
+            </if>
+            <if test="ZDJS != null and ZDJS != ''">
+                and ZDJS like concat('%', #{ZDJS} ,'%')
+            </if>
+            <if test="KSKM != null and KSKM != ''">
+                and KSKM like concat('%', #{KSKM} ,'%')
+            </if>
+            <if test="NF != null and NF != ''">
+                and NF like concat('%', #{NF} ,'%')
+            </if>
+        </where>
+        ORDER BY ID DESC
+    </select>
+
+    <update id="updateXYShzt">
+        update bs_jianzhang_zsjz
+        <set>
+            <if test="XYSHR != null">
+                XYSHR = #{XYSHR},
+            </if>
+            XYSHSJ = CURRENT_TIMESTAMP
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+
+    <update id="updateYYShzt">
+        update bs_jianzhang_zsjz
+        <set>
+            <if test="YYSHR != null">
+                YYSHR = #{YYSHR},
+            </if>
+            YYSHSJ = CURRENT_TIMESTAMP
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+
+</mapper>

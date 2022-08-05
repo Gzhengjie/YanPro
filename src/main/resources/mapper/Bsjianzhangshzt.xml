@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mingmen.yanpro.mapper.BsjianzhangshztMapper">
+    <update id="update">
+        update bs_jianzhang_shzt
+        <set>
+            <if test="SHZT != null">
+                SHZT = #{SHZT},
+            </if>
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+    <!--id等于方法名-->
+
+    <insert id="insert">
+        insert into ss_jianzhang_shzt(YXSDM, YXSMC, SHZT, NF)
+        select #{yxsdm,jdbcType=VARCHAR},
+               #{yxsmc,jdbcType=VARCHAR},
+               #{shzt,jdbcType=VARCHAR},
+               #{nf,jdbcType=VARCHAR}
+        where not exists (select 1 from bs_jianzhang_shzt where YXSMC = #{yxsmc} and NF = #{nf})
+    </insert>
+    
+    <resultMap id="pageBsjianzhangshzt" type="com.mingmen.yanpro.dao.BsjianzhangshztDao">
+        <result column="ID" property="ID" />
+        <result column="YXSDM" property="YXSDM" />
+        <result column="YXSMC" property="YXSMC" />
+        <result column="SHZT" property="SHZT" />
+        <result column="NF" property="NF" />
+    </resultMap>
+
+    <select id="findPage" resultMap="pageBsjianzhangshzt">
+        select * from bs_jianzhang_shzt
+        <where>
+            <if test="YXSMC != null and YXSMC != ''">
+                and YXSMC like concat('%', #{YXSMC} ,'%')
+            </if>
+            <if test="NF != null and NF != ''">
+                and NF like concat('%', #{NF} ,'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

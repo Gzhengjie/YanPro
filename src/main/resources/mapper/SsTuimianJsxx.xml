@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mingmen.yanpro.mapper.SsTuimianJsxxMapper">
+    <update id="myUpdate" parameterType="String">
+        UPDATE `tuimian_jsxx`
+        <set>
+            <if test="xm != null">
+                `XM` = #{xm},
+            </if>
+            <if test="xb != null">
+                `XB` = #{xb},
+            </if>
+            <if test="tjyxsdm != null">
+                `TJYXSDM` = #{tjyxsdm},
+            </if>
+            <if test="tjyxsmc != null">
+                `TJYXSMC` = #{tjyxsmc},
+            </if>
+            <if test="bkzydm != null">
+                `BKZYDM` = #{bkzydm},
+            </if>
+            <if test="bkzymc != null">
+                `BKZYMC` = #{bkzymc},
+            </if>
+            <if test="jsyxsdm != null">
+                `JSYXSDM` = #{jsyxsdm},
+            </if>
+            <if test="jsyxsmc != null">
+                `JSYXSMC` = #{jsyxsmc},
+            </if>
+            <if test="ngdzydm != null">
+                `NGDZYDM` = #{ngdzydm},
+            </if>
+            <if test="ngdzymc != null">
+                `NGDZYMC` = #{ngdzymc},
+            </if>
+            <if test="dsxm != null">
+                `DSXM` = #{dsxm},
+            </if>
+            <if test="dssfbd != null">
+                `DSSFBD` = #{dssfbd},
+            </if>
+            <if test="jslxdm != null">
+                `JSLXDM` = #{jslxdm},
+            </if>
+            <if test="jslxmc != null">
+                `JSLXMC` = #{jslxmc},
+            </if>
+            <if test="fszcj != null">
+                `FSZCJ` = #{fszcj},
+            </if>
+            <if test="fszcjpm != null">
+                `FSZCJPM` = #{fszcjpm},
+            </if>
+            <if test="wydj != null">
+                `WYDJ` = #{wydj},
+            </if>
+            <if test="jslbdm != null">
+                `JSLBDM` = #{jslbdm},
+            </if>
+            <if test="jslbmc != null">
+                `JSLBMC` = #{jslbmc},
+            </if>
+            <if test="tmsly != null">
+                `TMSLY` = #{tmsly},
+            </if>
+            <if test="cjxly != null">
+                `CJXLY` = #{cjxly},
+            </if>
+            <if test="bz != null">
+                `BZ` = #{bz},
+            </if>
+            <if test="nf != null">
+                `NF` = #{nf},
+            </if>
+            <if test="shzt != null">
+                `SHZT` = #{shzt},
+            </if>
+            <if test="scr != null">
+                `SCR` = #{scr},
+            </if>
+            <if test="yyshr != null">
+                `YYSHR` = #{yyshr},
+            </if>
+            <if test="shsj != null">
+                `SHSJ` = now()
+            </if>
+        </set>
+        <where>
+            `Id` = #{id}
+        </where>
+    </update>
+
+    <insert id="insert">
+        INSERT INTO `yandatabase`.`tuimian_jsxx` (`XM`, `XB`, `TJYXSDM`, `TJYXSMC`, `BKZYDM`, `BKZYMC`,
+                                                  `JSYXSDM`, `JSYXSMC`, `NGDZYDM`, `NGDZYMC`, `DSXM`, `DSSFBD`,
+                                                  `JSLXDM`, `JSLXMC`, `FSZCJ`, `FSZCJPM`,
+                                                  `WYDJ`, `JSLBDM`, `JSLBMC`, `TMSLY`, `CJXLY`, `BZ`, `NF`, `SHZT`,
+                                                  `SCR`, `YYSHR`)
+        VALUES (#{xm}, #{xb}, #{tjyxsdm}, #{tjyxsmc}, #{bkzydm}, #{bkzymc}, #{jsyxsdm}, #{jsyxsmc}, #{ngdzydm},
+                #{ngdzymc}, #{dsxm}, #{dssfbd}, #{jslxdm}, #{jslxmc}, #{fszcj}, #{fszcjpm}, #{wydj}, #{jslbdm},
+                #{jslbmc}, #{tmsly}, #{cjxly}, #{bz},
+                #{nf}, #{shzt}, #{scr}, #{yyshr})
+    </insert>
+
+
+    <select id="selectAll" resultType="com.mingmen.yanpro.dao.SsTuimianJsxx">
+        SELECT * from tuimian_jsxx
+    </select>
+
+
+    <select id="findPage" resultType="com.mingmen.yanpro.dao.SsTuimianJsxx">
+        select *
+        from tuimian_jsxx
+        <where>
+            <if test="shzt != null">
+                and shzt = #{shzt}
+            </if>
+            <if test="tjyxsdm != null and tjyxsdm != '' ">
+                and tjyxsdm = #{tjyxsdm}
+            </if>
+            <if test="tjyxsmc != null and tjyxsmc != '' ">
+                and tjyxsmc = #{tjyxsmc}
+            </if>
+            <if test="dsxm != null and dsxm != ''">
+                and dsxm = #{dsxm}
+            </if>
+            <if test="nf != 0">
+                and nf = #{nf}
+            </if>
+        </where>
+    </select>
+
+    <select id="totalSutShzt" resultType="java.lang.Integer">
+        SELECT count(*) from tuimian_jsxx
+        <where>
+            <if test="tjyxsdm != null and tjyxsdm != '' ">
+                and tjyxsdm = #{tjyxsdm}
+            </if>
+            <if test="tjyxsmc != null and tjyxsmc != '' ">
+                and tjyxsmc = #{tjyxsmc}
+            </if>
+            <if test="shzt != null">
+                and shzt = #{shzt}
+            </if>
+            <if test="nf != 0">
+                and nf = #{nf}
+            </if>
+        </where>
+    </select>
+
+</mapper>
+

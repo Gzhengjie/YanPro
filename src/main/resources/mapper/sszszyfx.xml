@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.mingmen.yanpro.mapper.SszszyfxMapper">
+
+    <update id="update">
+        update base_yjfx_ss
+        <set>
+            <if test="ZYDM != null">
+                ZYDM = #{ZYDM},
+            </if>
+            <if test="ZYMC != null">
+                ZYMC = #{ZYMC},
+            </if>
+            <if test="YJFXDM != null">
+                ZYMC = #{ZYMC},
+            </if>
+            <if test="YJFXMC != null">
+                XXFS = #{XXFS},
+            </if>
+            <if test="XXFS != null">
+                XXFS = #{XXFS},
+            </if>
+            <if test="ZSLX != null">
+                ZSLX = #{ZSLX},
+            </if>
+            <if test="BZ != null">
+                BZ = #{BZ},
+            </if>
+            <if test="NF != null">
+                NF = #{NF},
+            </if>
+
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+</mapper>

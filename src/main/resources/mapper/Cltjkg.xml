@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.mingmen.yanpro.mapper.CltjkgMapper">
+
+    <update id="update">
+        update base_cltjkg
+        <set>
+            <if test="CLMC != null">
+                CLMC = #{CLMC},
+            </if>
+
+            <if test="SFYXTJ != null">
+                SFYXTJ = #{SFYXTJ},
+            </if>
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+</mapper>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.mingmen.yanpro.mapper.BszszyfxMapper">
+
+    <update id="update">
+        update base_yjfx_bs
+        <set>
+            <if test="ZYDM != null">
+                ZYDM = #{ZYDM},
+            </if>
+            <if test="YJFXDM != null">
+                ZYMC = #{ZYMC},
+            </if>
+            <if test="YJFXMC != null">
+                YJFXMC = #{YJFXMC},
+            </if>
+            <if test="XXFS != null">
+                XXFS = #{XXFS},
+            </if>
+            <if test="ZSLX != null">
+                ZSLX = #{ZSLX},
+            </if>
+            <if test="BZ != null">
+                BZ = #{BZ},
+            </if>
+            <if test="NF != null">
+                NF = #{NF},
+            </if>
+            <if test="SHZT != null">
+                SHZT = #{SHZT},
+            </if>
+            <if test="SCR != null">
+                SCR = #{SCR},
+            </if>
+            <if test="SCSJ != null">
+                SCSJ = #{SCSJ},
+            </if>
+            <if test="XYSHR != null">
+                XYSHR = #{XYSHR},
+            </if>
+            <if test="XYSHSJ != null">
+                XYSHSJ = #{XYSHSJ},
+            </if>
+            <if test="YYSHR != null">
+                YYSHR = #{YYSHR},
+            </if>
+            <if test="YYSHSJ != null">
+                YYSHSJ = #{YYSHSJ},
+            </if>
+            <if test="GXSJ != null">
+                GXSJ = #{GXSJ},
+            </if>
+
+        </set>
+        <where>
+            ID = #{ID}
+        </where>
+    </update>
+</mapper>
